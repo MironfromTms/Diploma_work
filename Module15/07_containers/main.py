@@ -11,9 +11,3 @@ print(full_list)
 new_weight = int(input('Введите вес нового контейнера: '))
 if new_weight > 200:
     print('недопустимый вес контейнера! Введите число до 200 кг')
-else:
-    new_place = int(input('Номер, куда встанет новый контейнер: '))
-    a = new_place - 1
-del full_list[a]
-full_list.insert(a, new_weight)
-print(full_list)
