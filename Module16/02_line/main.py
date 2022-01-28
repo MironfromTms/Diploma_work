@@ -12,6 +12,6 @@ for i in range(162, 181, 3):
 
 print(secound_class)
 
-new_class = first_class+secound_class
-new_class.sort()
-print(new_class)
+first_class.extend(secound_class)
+first_class.sort()
+print(first_class)
