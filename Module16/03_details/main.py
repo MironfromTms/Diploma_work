@@ -3,12 +3,13 @@ shop = [['каретка', 1200], ['шатун', 1000], ['седло', 300],
         ['обод', 2000], ['шатун', 200], ['седло', 2700]]
 
 # TODO здесь писать код
-detail_name = input('Название детали: ')
-detail_count = 0
+detail = input('Название детали: ')
+count = 0
 sum_price = 0
-for detail in shop:
-        if detail[0] == detail_name:
-                detail_count += 1
-                sum_price += detail[1]
-print('Кол-во деталей -', detail_count)
+for i in shop:
+    for j in i:
+        if j == detail:
+            count += 1
+            sum_price += i[1]
+print('Кол-во деталей -', count)
 print('Общая стоимость -', sum_price)
