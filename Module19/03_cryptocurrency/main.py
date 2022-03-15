@@ -46,3 +46,13 @@ data = {
 
 
 # TODO здесь писать код
+
+print('Список ключей словаря', data.keys())
+print('Список значений словаря:', data.values())
+data['ETH'].update({'total_diff': 100})
+data['tokens'][0]['fst_token_info']['name'] = 'doge'
+new_total_out = data['tokens'][0].get('total_out')
+data['ETH']['total_out'] = new_total_out
+data['tokens'][0].pop('total_out')
+data['tokens'][1]['sec_token_info']['total_price'] = data['tokens'][1]['sec_token_info']['price']
+del data['tokens'][1]['sec_token_info']['price']
