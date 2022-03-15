@@ -25,3 +25,15 @@ store = {
 }
 
 # TODO здесь писать код
+for good, index in goods.items():
+    sum_quantity = 0
+    sum_price = 0
+    for goods in store[index]:
+        good_quantity = goods['quantity']
+        good_price = goods['price']
+        total_price = good_quantity * good_price
+        sum_quantity += good_quantity
+        sum_price += total_price
+    print(good, '-', sum_quantity, 'шт, стоимостью', sum_price, 'руб')
+
+
