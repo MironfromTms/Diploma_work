@@ -9,7 +9,8 @@ def is_polyndrom(string):
         if j % 2 != 0:
             odd_count += 1
 
-    return odd_count
+    return odd_count <= 1
+
 
 phrase = input('Введите строку: ')
 if is_polyndrom(phrase):
