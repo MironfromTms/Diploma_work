@@ -4,4 +4,7 @@ players = {
     ("Rob", "Bobbin"): (12, 8, 2)
 }
 
-# TODO здесь писать код
+new_list = list()
+for i_name, i_scores in players.items():
+    new_list.append(i_name+i_scores)
+print(new_list)
