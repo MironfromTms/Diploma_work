@@ -160,23 +160,112 @@
 # ]
 #
 # print(team_member)
+#
+# family_member = {
+#     "name": "Jane",
+#     "surname": "Doe",
+#     "hobbies": ["running", "sky diving", "singing"],
+#     "age": 35,
+#     "children": [
+#         {
+#             "name": "Alice",
+#             "age": 6
+#         },
+#         {
+#             "name": "Bob",
+#             "age": 8
+#         }
+#     ]
+# }
+# for i in family_member.keys():
+#     print(i, '-', family_member.get(i))
+# print(family_member['children'][1].get('name'))
 
-family_member = {
-    "name": "Jane",
-    "surname": "Doe",
-    "hobbies": ["running", "sky diving", "singing"],
-    "age": 35,
-    "children": [
-        {
-            "name": "Alice",
-            "age": 6
-        },
-        {
-            "name": "Bob",
-            "age": 8
-        }
-    ]
-}
-for i in family_member.keys():
-    print(i, '-', family_member.get(i))
-print(family_member['children'][1].get('name'))
+# phrase = input('Введите строку: ')
+# punctuation = set(".,;:!?")
+# counter = 0
+# for i in phrase:
+#     if i in punctuation:
+#         counter += 1
+# print('Количество знаков пунктуации: ', counter)
+
+
+# from random import randint
+# nums_1 = [29, 17, 10, 15, 13, 22, 12, 22, 7, 24, 26, 3, 11, 2, 3, 16, 19, 21, 2, 3, 8, 27, 2, 17, 2, 20, 12, 21, 3, 1]
+# nums_2 = [16, 21, 30, 24, 5, 7, 23, 13, 11, 5, 21, 5, 19, 9, 12, 9, 15, 16, 29, 8, 16, 1, 22, 15, 16, 9, 1, 13, 21, 21]
+# nums_1_set = set(nums_1)
+# nums_2_set = set(nums_2)
+# print('1-е множество: ', nums_1_set)
+# print('2-е множество: ', nums_2_set)
+# print('Минимальный элемент 1-го множества: ', min(nums_1_set))
+# print('Минимальный элемент 2-го множества: ', min(nums_2_set))
+# nums_1_set.remove(min(nums_1_set))
+# nums_2_set.remove(min(nums_2_set))
+# nums_1_set.add(randint(100, 200))
+# nums_2_set.add(randint(100, 200))
+# print('Случайное число для 1-го множества: ', max(nums_1_set))
+# print('Случайное число для 2-го множества: ', max(nums_2_set))
+# print('Объединение множеств: ', nums_1_set | nums_2_set)
+# print('Пересечение множеств: ', nums_1_set & nums_2_set)
+# print('Элементы, входящие в nums_2, но не входящие в nums_1: ', nums_2_set - nums_1_set)
+
+
+# string = input('Введите строку:')
+# string_set = set()
+# for i in string:
+#     if '0' <= i <= '9':
+#         string_set.add(i)
+# string_list = list(string_set)
+# string_list.sort()
+# answer = ''.join(string_list)
+# print('Различные цифры строки: ', answer)
+
+# tuple_1_list = []
+# for _ in range(10):
+#     tuple_1_list.append(randint(0, 5))
+# tuple_2_list = []
+# for _ in range(10):
+#     tuple_2_list.append(randint(-5, 0))
+# tuple_1 = tuple(tuple_1_list)
+# print(tuple_1)
+# tuple_2 = tuple(tuple_2_list)
+# print(tuple_2)
+# tuple_3 = tuple_1 + tuple_2
+# print(tuple_3)
+# print(tuple_3.count(0))
+
+# import math
+#
+#
+# def side_and_fool(raduis, hight):
+#     side = 2 * math.pi * raduis * hight
+#     full = side + 2 * math.pi * raduis ** 2
+#     print('Площадь боковой поверхности -', round(side, 2))
+#     print('Полная площадь -', (round(full, 2)))
+#     return side, full
+#
+#
+# radius = 100
+# hight = 10
+#
+# side_and_fool(radius, hight)
+
+
+import random
+
+#
+# def change(nums):
+#     index = random.randint(0, 4)
+#     value = random.randint(100, 1000)
+#     nums[index] = value
+#     return nums, value
+#
+#
+# my_nums = 1, 2, 3, 4, 5
+# my_nums_list = list(my_nums)
+# new_nums_1, rand_val_1 = change(my_nums_list)
+# print(new_nums_1, rand_val_1)
+# new_nums_1_list = list(new_nums_1)
+# new_nums_2, rand_val_2 = change(new_nums_1_list)
+# rand_val_sum = rand_val_1 + rand_val_2
+# print(new_nums_2, rand_val_sum)
