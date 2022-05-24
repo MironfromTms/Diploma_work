@@ -7,12 +7,11 @@ nice_list = [1, 2, [3, 4], [[5, 6, 7], [8, 9, 10]],
 def my_list(*args):
     answer = list()
     for elem in args:
-        for sub_elem in elem:
-            if not isinstance(sub_elem, list):
-                answer.append(sub_elem)
-            else:
-                result = my_list(sub_elem)
-                answer.extend(result)
+        if not isinstance(elem, list):
+            answer.append(elem)
+        else:
+            result = my_list(*elem)
+            answer.extend(result)
     return answer
 
 
