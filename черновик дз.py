@@ -269,3 +269,258 @@ import random
 # new_nums_2, rand_val_2 = change(new_nums_1_list)
 # rand_val_sum = rand_val_1 + rand_val_2
 # print(new_nums_2, rand_val_sum)
+
+#
+# number_of_records = int(input('Сколько записей вносится в протокол? '))
+# print('Записи (результат и имя):')
+# score_dict = dict()
+# for i_record in range(1, number_of_records + 1):
+#     print(i_record, 'запись:', end='')
+#     player_score = input('')
+#     player_score_list = player_score.split()
+#     if player_score_list[1] not in score_dict.keys():
+#         score_dict[player_score_list[1]] = player_score_list[0]
+#     else:
+#         for j_name, j_score in score_dict.items():
+#             if j_name == player_score_list[1]:
+#                 score_dict[j_name] = int(j_score) + int(player_score_list[0])
+#
+# if len(score_dict.keys()) < 3:
+#     print('Не достаточное количество игроков. Соревнования не действительны! ')
+#
+# sorted_values = sorted(score_dict.values())
+# sorted_score_dict = dict()
+# for i in sorted_values:
+#     for i_key in score_dict.keys():
+#         if score_dict[i_key] == i:
+#             sorted_score_dict[i_key] = score_dict[i_key]
+# print(sorted_score_dict)
+#
+# print('Итоги соревнований:')
+# for i_place in range(3):
+#     print(i_place + 1, "место:", end='')
+
+# def factorial(num):
+#     if num == 1:
+#         return 1
+#     fac_n_minus_1 = factorial(num-1)
+#     return num * fac_n_minus_1
+#
+#
+# num_fact = factorial(5)
+# print(num_fact)
+
+# def power(a, n):
+#     if n == 0:
+#         return 1
+#     answer = a * power(a, n - 1)
+#     return answer
+#
+#
+# float_num = float(input('Введите вещественное число: '))
+# int_num = int(input('Введите степень числа: '))
+# print(float_num, '**', int_num, '=', power(float_num, int_num))
+
+# import simple_draw as sd
+#
+# sd.resolution = (1200, 600)
+#
+# point = sd.get_point(300, 300)
+# radius = 50
+# for _ in range(3):
+#     radius += 5
+#     sd.circle(center_position=point, radius=radius, color=random_color(), width=2)
+# sd.pause()
+
+# site = {
+#     'html': {
+#         'head': {
+#             'title': 'Мой сайт'
+#         },
+#         'body': {
+#             'h2': 'Здесь будет мой заголовок',
+#             'div': 'Тут, наверное, какой-то блок',
+#             'p': 'А вот здесь новый абзац'
+#         }
+#     }
+# }
+#
+#
+# def find_key(struct, key):
+#     if key in struct:
+#         return struct[key]
+#
+#     for sub_struct in struct.values():
+#         if isinstance(sub_struct, dict):
+#             result = find_key(sub_struct, key)
+#             if result:
+#                 break
+#     else:
+#         result = None
+#
+#     return result
+#
+#
+# user_key = input('Искомый ключ: ')
+# value = find_key(site, user_key)
+# if value:
+#     print(value)
+# else:
+#     print('Такого ключа в структуре сайта нет.')
+
+import random
+#
+#
+# def change_dict(dct):
+#     num = random.randint(1, 100)
+#     for i_key, i_value in dct.items():
+#         if isinstance(i_value, list):
+#             i_value.append(num)
+#         if isinstance(i_value, dict):
+#             i_value[num] = i_key
+#         if isinstance(i_value, set):
+#             i_value.add(num)
+
+
+# nums_list = [1, 2, 3]
+# some_dict = {1: 'text', 2: 'another text'}
+# uniq_nums = {1, 2, 3}
+#
+# common_dict = {1: nums_list.copy(), 2: some_dict.copy(), 3: uniq_nums.copy(), 4: (10, 20, 30)}
+#
+# change_dict(common_dict)
+# print(common_dict)
+# print(nums_list, some_dict, uniq_nums)
+#
+# phrase = input('Введите данные: ')
+# print('Тип данных:', type(phrase))
+# print('Id объекта:', id(phrase))
+
+import os
+
+# abs_path = os.path.abspath('new_folder')
+# print(abs_path)
+# abs_path_join = os.path.abspath(os.path.join('..', 'new_folder'))
+# print(abs_path_join)
+# abs_path_one = os.path.abspath(('/new_folder'))
+# print(abs_path_one)
+# abs_path_sep = os.path.abspath(os.path.join(os.path.sep, 'new_folder'))
+# print(abs_path_sep)
+
+# def print_dirs(project):
+#     print('\nСодержимое директории', project)
+#     if os.path.exists(project):
+#         for i_elem in os.listdir(project):
+#             path = os.path.join(project, i_elem)
+#             print('     ', path)
+#     else:
+#         print('Каталога нет!')
+#
+#
+# projets_list = ['Prod', 'PycharmProjects', 'workspace']
+# for i_project in projets_list:
+#     path_to_project = os.path.abspath(os.path.join('..', '..', i_project))
+#     print_dirs(path_to_project)
+
+# rel_path = os.path.join("access", "admin.bat")
+# abs_path = os.path.abspath(rel_path)
+# print("Абсолютный путь до файла:", abs_path)
+# print("Относительный путь до файла:", rel_path)
+
+# print('Содержимое каталога', os.path.abspath(''))
+# for path in os.listdir('..'):
+#     print(os.path.abspath(path))
+#
+#
+# print("Корень диска:", os.path.abspath('.').split("\\")[0])
+
+
+# def find_file(cur_path, file_name):
+#     print('Переходим', cur_path)
+#
+#     for i_elem in os.listdir(cur_path):
+#         path = os.path.join(cur_path, i_elem)
+#         print('    Смотрим', path)
+#         if file_name == i_elem:
+#             return path
+#         if os.path.isdir(path):
+#             print('Это директория')
+#             result = find_file(path, file_name)
+#             if result:
+#                 break
+#     else:
+#         result = None
+#
+#     return result
+#
+#
+# file_path = find_file(os.path.abspath
+#                       (os.path.join('Module14'))
+#                       , 'main.py')
+#
+# if file_path:
+#     print(file_path)
+# else:
+#     print('Govno')
+
+# path_to = input("Путь: ")
+#
+# if os.path.isdir(path_to):
+#     print("Это папка!")
+# elif os.path.isfile(path_to):
+#     print("Это файл!")
+#     print("Размер файла:", os.path.getsize(path_to), "байт")
+# else:
+#     print("Указанного пути не существует")
+
+
+#
+# def find_file(cur_path, file_name):
+#     for i_elem in os.listdir(cur_path):
+#         path = os.path.join(cur_path, i_elem)
+#         if file_name == i_elem:
+#             print(os.path.abspath(path))
+#         elif os.path.isdir(path):
+#             result = find_file(path, file_name)
+#             if result:
+#                 break
+#     else:
+#         result = None
+#
+#     return result
+#
+#
+# find_file('..',  'main.py')
+
+# os.renames(r"C:\folder\first\second",r"C:\catalog\one\two")
+
+# print(os.path.abspath(os.path.join('huy')))
+
+print(os.listdir())
+path_to_first = os.path.join('task', 'group_1.txt')
+path_to_second = os.path.join('task', 'Additional_info', 'group_2.txt')
+
+file = open(path_to_first, 'r', encoding='utf8')
+file_2 = open(path_to_second, 'r', encoding='utf8')
+
+summa = 0
+diff = 0
+compose = 1
+
+for i_line in file:
+    info = i_line.split()
+    if info:
+        summa += int(info[2])
+        diff -= int(info[2])
+
+for i_line in file_2:
+    info = i_line.split()
+    if info:
+        compose *= int(info[2])
+
+file.close()
+file_2.close()
+
+print(summa)
+print(diff)
+print(compose)
