@@ -75,6 +75,9 @@ while first_player.is_playing or second_player.is_playing:
         print(
             f'{first_player.user_name} has {first_player.user_cards} - {first_player.score} scores.'
             f'{second_player.user_name} has {second_player.user_cards} - {second_player.score} scores')
+        if first_player.score == 21:
+            print('You are winner! You have 21!')
+            first_player.stop_playing()
 
         print('1. Take a card')
         print('2. Stop')
@@ -97,9 +100,14 @@ while first_player.is_playing or second_player.is_playing:
         if random.randint(0, 1) == 1:
             print('CPU took the card')
             second_player.take(cards_desk)
+            print(f'CPU has {second_player.user_cards}. It is - {second_player.score}')
             if second_player.score > 21:
                 print('You are winner! CPU take more that 21!')
                 second_player.stop_playing()
+            elif second_player.score == 21:
+                print('CPU winner!')
+                second_player.stop_playing()
+
         else:
             print('CPU has passed')
             second_player.stop_playing()
@@ -108,7 +116,7 @@ print(f'{first_player.user_name} has {first_player.user_cards} - {first_player.s
       f'{second_player.user_name} has {second_player.user_cards} - {second_player.score} scores')
 if first_player.score == second_player.score:
     print('It is draw!')
-elif first_player.score == 21 or first_player.score > second_player.score or second_player.score > 21:
+elif first_player.score > second_player.score or second_player.score > 21:
     print('You are winner!')
 elif first_player.score > 21 or first_player.score < second_player.score:
     print('CPU winner!')
