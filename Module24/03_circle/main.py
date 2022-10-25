@@ -12,10 +12,10 @@ class Circle:
         return 2 * 3.14 * self.radius
 
     def get_bigger(self, k):
-        self.square() * k
+        self.radius *= k
 
     def is_intersect(self, second_circle):
-        distance_between_centers = ((second_circle.y - self.y)**2 + (second_circle.x - self.x)**2)**0.5
+        distance_between_centers = ((second_circle.y - self.y) ** 2 + (second_circle.x - self.x) ** 2) ** 0.5
         print(distance_between_centers)
         sum_of_radiuses = self.radius + second_circle.radius
         print(sum_of_radiuses)
