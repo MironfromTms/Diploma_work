@@ -12,7 +12,7 @@ class Circle:
         return 2 * 3.14 * self.radius
 
     def get_bigger(self, k):
-        Circle.square(self) * k
+        self.square() * k
 
     def is_intersect(self, second_circle):
         distance_between_centers = ((second_circle.y - self.y)**2 + (second_circle.x - self.x)**2)**0.5
