@@ -1,4 +1,7 @@
 # TODO здесь писать код
+
+
+
 def add_contact():
     contact_name = input('Введите имя и фамилию нового контакта (через пробел): ')
     name_list = contact_name.split()
