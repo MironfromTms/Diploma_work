@@ -14,19 +14,43 @@ class Human:
             f'Food now - {self.house.fridge.food}')
 
     def eat_the_food(self):
-        user_house.fridge.food -= 10
-        human.satiety += 10
+        self.house.fridge.food -= 10
+        self.satiety += 10
 
     def work(self):
-        human.satiety -= 10
-        user_house.locker.money += 10
+        self.satiety -= 10
+        self.house.locker.money += 10
 
     def play_the_game(self):
-        human.satiety -= 10
+        self.satiety -= 10
 
     def go_to_the_shop(self):
-        user_house.fridge.food += 10
-        user_house.locker.money -= 10
+        self.house.fridge.food += 10
+        self.house.locker.money -= 10
+
+    def act(self):
+        random_number = random.randint(0, 6)
+        self.show_me_the_info()
+        if self.satiety < 20:
+            self.eat_the_food()
+            print(f'{self.name} is hungry! Let is go for an eating!')
+        elif self.house.fridge.food < 10:
+            self.go_to_the_shop()
+            print(f'Not enough food!{self.name} going to the shop!')
+        elif self.house.locker.money < 50:
+            self.work()
+            print(f'Not enough money!{self.name} go to the work!')
+        elif random_number == 1:
+            self.work()
+            print(f'{self.name} go for the work!')
+        elif random_number == 2:
+            self.eat_the_food()
+            print(f'{self.name} is eating!')
+        elif random_number in [3, 4, 5, 6]:
+            self.play_the_game()
+            print(f'{self.name} playing the game!')
+        elif self.satiety < 0:
+            print(f'{self.name} now is dead! Try to eat more food next time!')
 
 
 class House:
@@ -47,32 +71,13 @@ class Locker:
 
 fridge = Fridge()
 locker = Locker()
-user_house = House()
-human = Human('Petr', satiety=50, house=user_house)
+first_house = House()
+second_house = House()
+first_human = Human('Petr', satiety=50, house=first_house)
+second_human = Human('Jim', satiety=50, house=second_house)
 
 days = 1
-while days < 366:
-    print(f'It is {days} day!')
-    days += 1
-    random_number = random.randint(0, 6)
-    human.show_me_the_info()
-    if human.satiety < 20:
-        human.eat_the_food()
-        print(f'{human.name} is hungry! Let is go for an eating!')
-    elif user_house.fridge.food < 10:
-        human.go_to_the_shop()
-        print(f'Not enough food!{human.name} going to the shop!')
-    elif user_house.locker.money < 50:
-        human.work()
-        print(f'Not enough money!{human.name} go for to the work!')
-    elif random_number == 1:
-        human.work()
-        print(f'{human.name} go for the work!')
-    elif random_number == 2:
-        human.eat_the_food()
-        print(f'{human.name} is eating!')
-    elif random_number in [3, 4, 5, 6]:
-        human.play_the_game()
-        print(f'{human.name} playing the game!')
-    elif human.satiety < 0:
-        print(f'{human.name} now is dead! Try to eat more food next time!')
+for i_day in range(366):
+    print(f'It is {i_day} day!')
+    first_human.act()
+    second_human.act()
