@@ -1,10 +1,11 @@
 # TODO здесь писать код
+# TODO здесь писать код
 import random
 
 
 class Warrior:
-    def __int__(self, health=100):
-        self.health = 100
+    def __int__(self, health):
+        self.health = health
 
 
 first_warrior = Warrior()
