@@ -71,6 +71,8 @@ class Wife(HouseResident):
     def clean_the_house(self):
         self.satiety -= 10
         House.dirt -= 100
+        if House.dirt < 0:
+            House.dirt = 0
         print(f'{self.name} clean the house like Cinderella.')
 
 
