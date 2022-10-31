@@ -8,7 +8,7 @@ class HouseResident:
         self.happiness = happiness
 
     def eat(self):
-        House.food -= 30
+        house.food -= 30
         self.satiety += 30
         print(f'{self.name} is eating.')
 
@@ -18,7 +18,7 @@ class Husband(HouseResident):
         super().__init__(name, satiety, happiness)
 
     def work(self):
-        House.money += 150
+        house.money += 150
         self.satiety -= 10
         print(f'{self.name} is working today.')
 
@@ -31,6 +31,18 @@ class Husband(HouseResident):
         self.happiness += 5
         self.satiety -= 10
         print(f'{self.name} pet the {Cat.__name__}.')
+
+    def act(self):
+        if house.money < 50:
+            self.work()
+            house.total_money += 150
+        if random.randint(1, 6) == 1 and self.satiety < 50:
+            self.eat()
+            house.total_food += 30
+        elif random.randint(1, 6) == 2 and self.happiness < 50:
+            self.play_the_game()
+        elif random.randint(1, 6) == 4 and self.happiness < 50:
+            self.pet_the_cat()
 
     def __str__(self):
         return f'{self.name} has {self.satiety} of satiety\n' \
@@ -46,14 +58,14 @@ class Wife(HouseResident):
                f'and has {self.happiness} of happiness.'
 
     def go_to_the_shop(self):
-        House.food += 100
-        House.money -= 100
+        house.food += 100
+        house.money -= 100
         self.satiety -= 10
         print(f'{self.name} go to the shop.')
 
     def buy_pet_food(self):
-        House.money -= 50
-        House.pet_food += 50
+        house.money -= 50
+        house.pet_food += 50
         self.satiety -= 10
         print(f'{self.name} buy pet food.')
 
@@ -64,16 +76,35 @@ class Wife(HouseResident):
 
     def buy_the_coat(self):
         self.happiness += 60
-        House.money -= 350
+        house.money -= 350
         self.satiety -= 10
         print(f'{self.name} buy the coat and very happy now.')
 
     def clean_the_house(self):
         self.satiety -= 10
-        House.dirt -= 100
-        if House.dirt < 0:
-            House.dirt = 0
+        house.dirt -= 100
+        if house.dirt < 0:
+            house.dirt = 0
         print(f'{self.name} clean the house like Cinderella.')
+
+    def act(self):
+        if house.food < 30:
+            self.go_to_the_shop()
+            house.total_money += 100
+        elif house.pet_food < 10:
+            self.buy_pet_food()
+            house.total_money += 50
+        elif house.money > 400 and self.satiety < 30:
+            self.buy_the_coat()
+            house.total_money += 350
+            house.total_coat_bought += 1
+        elif random.randint(1, 3) == 3 and house.dirt > 50:
+            self.clean_the_house()
+        elif random.randint(1, 3) == 2 and self.satiety < 50:
+            self.eat()
+            house.total_food += 30
+        elif random.randint(1, 3) == 1 and self.happiness < 50:
+            self.pet_the_cat()
 
 
 class Cat(HouseResident):
@@ -86,13 +117,23 @@ class Cat(HouseResident):
 
     def eat_pet_food(self):
         self.satiety += 20
-        House.pet_food -= 10
+        house.pet_food -= 10
         print(f'{self.name} eat pet food.')
 
     def scratch_wallpaper(self):
-        House.dirt += 5
+        house.dirt += 5
         self.satiety -= 10
         print(f'{self.name} has bad behavior and scratching the wallpaper.')
+
+    def act(self):
+        if self.satiety < 20:
+            self.satiety += 20
+        house.pet_food -= 10
+
+        if random.randint(1, 3) == 1:
+            self.scratch_wallpaper()
+            house.dirt += 5
+            self.satiety -= 10
 
 
 class House:
@@ -115,51 +156,14 @@ class House:
 
     def one_day(self):
         for i_resident in self.residents:
-            if House.dirt > 90:
+            if house.dirt > 90:
                 i_resident.happiness -= 20
                 if isinstance(i_resident, Wife):
                     i_resident.clean_the_house()
             if i_resident.satiety < 30:
                 i_resident.eat()
-                House.total_food += 30
-            elif isinstance(i_resident, Cat) and i_resident.satiety < 20:
-                i_resident.satiety += 20
-                House.pet_food -= 10
-            elif isinstance(i_resident, Cat):
-                if random.randint(1, 3) == 1:
-                    i_resident.scratch_wallpaper()
-                    House.dirt += 5
-                    i_resident.satiety -= 10
-            elif isinstance(i_resident, Wife):
-                if House.food < 30:
-                    i_resident.go_to_the_shop()
-                    House.total_money += 100
-                elif House.pet_food < 10:
-                    i_resident.buy_pet_food()
-                    House.total_money += 50
-                elif House.money > 400 and i_resident.satiety < 30:
-                    i_resident.buy_the_coat()
-                    House.total_money += 350
-                    House.total_coat_bought += 1
-                elif random.randint(1, 3) == 3 and House.dirt > 50:
-                    i_resident.clean_the_house()
-                elif random.randint(1, 3) == 2 and i_resident.satiety < 50:
-                    i_resident.eat()
-                    House.total_food += 30
-                elif random.randint(1, 3) == 1 and i_resident.happiness < 50:
-                    i_resident.pet_the_cat()
-            elif isinstance(i_resident, Husband):
-                if House.money < 50:
-                    i_resident.work()
-                    House.total_money += 150
-                    break
-                if random.randint(1, 6) == 1 and i_resident.satiety < 50:
-                    i_resident.eat()
-                    House.total_food += 30
-                elif random.randint(1, 6) == 2 and i_resident.happiness < 50:
-                    i_resident.play_the_game()
-                elif random.randint(1, 6) == 4 and i_resident.happiness < 50:
-                    i_resident.pet_the_cat()
+                house.total_food += 30
+            i_resident.act()
 
 
 my_family = []
@@ -177,9 +181,9 @@ for i_day in range(1, 366):
     print(mother)
     print(pet)
     print(house)
-    House.dirt += 5
+    house.dirt += 5
     house.one_day()
 print(f'Total information about one year of life:\n'
-      f'Family has spent {House.total_money} of USD.\n'
-      f'They have eaten {House.total_food} units of food.\n'
-      f'They have bought {House.total_coat_bought} coats.')
+      f'Family has spent {house.total_money} of USD.\n'
+      f'They have eaten {house.total_food} units of food.\n'
+      f'They have bought {house.total_coat_bought} coats.')
