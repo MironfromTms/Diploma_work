@@ -32,17 +32,21 @@ class Human:
 
     def one_day(self):
         if random.randint(1, 10) == 10:
-            carma_file.write(f'At day number {day} the misdemeanor was - {random.choice(errors_list)}\n')
+            raise
         else:
             self.karma += random.randint(1, 7)
 
 
-errors_list = [KillError.__name__, DrunkError.__name__, CarCrashError.__name__, GluttonyError.__name__, DepressionError.__name__]
+errors_list = [KillError.__name__, DrunkError.__name__, CarCrashError.__name__, GluttonyError.__name__,
+               DepressionError.__name__]
 day = 0
 human = Human(0)
 with open('carma.log', 'a', encoding='utf8') as carma_file:
     while human.karma < 500:
         day += 1
-        human.one_day()
+        try:
+            human.one_day()
+        except:
+            carma_file.write(f'At day number {day} the misdemeanor was - {random.choice(errors_list)}\n')
 
 print('You are in nirvana now!')
