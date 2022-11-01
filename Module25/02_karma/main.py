@@ -1,19 +1,48 @@
 import random
 
-carma = 0
-day = 1
+
+class KillError(Exception):
+    def __str__(self):
+        return 'KillError'
 
 
-def one_day(number):
-    if random.randint(1, 10) == 10:
-        with open('carma.log', 'a', encoding='utf8') as carma_file:
-            misdemeanor = random.choices(['KillError', 'DrunkError', 'CarCrashError', 'GluttonyError',
-                                          'DepressionError'])
-            carma_file.write(f'At day number {number} the misdemeanor was - {misdemeanor}\n')
+class DrunkError(Exception):
+    def __str__(self):
+        return 'DrunkError'
 
 
-while carma < 500:
-    one_day(day)
-    day += 1
-    carma += random.randint(1, 7)
+class CarCrashError(Exception):
+    def __str__(self):
+        return 'CarCrashError'
+
+
+class GluttonyError(Exception):
+    def __str__(self):
+        return 'GluttonyError'
+
+
+class DepressionError(Exception):
+    def __str__(self):
+        return 'DepressionError'
+
+
+class Human:
+    def __init__(self, karma=0):
+        self.karma = karma
+
+    def one_day(self):
+        if random.randint(1, 10) == 10:
+            carma_file.write(f'At day number {day} the misdemeanor was - {random.choice(errors_list)}\n')
+        else:
+            self.karma += random.randint(1, 7)
+
+
+errors_list = [KillError.__name__, DrunkError.__name__, CarCrashError.__name__, GluttonyError.__name__, DepressionError.__name__]
+day = 0
+human = Human(0)
+with open('carma.log', 'a', encoding='utf8') as carma_file:
+    while human.karma < 500:
+        day += 1
+        human.one_day()
+
 print('You are in nirvana now!')
