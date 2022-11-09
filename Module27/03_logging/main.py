@@ -1,27 +1,34 @@
 import functools
 from collections.abc import Callable
+from datetime import datetime
 
 
-def counter(func: Callable) -> Callable:
-    """Decorator which counts how many times
-     we called decorating function"""
+def logging(func: Callable) -> Callable:
+    """Decorator which logging code work"""
 
     @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        wrapper.count += 1
-        result = func(*args, **kwargs)
-        print(f'Function with name "{func.__name__}" has called {wrapper.count} times.')
-        return result
+    def wrapped_funk(*args, **kwargs):
+        try:
+            print(f'\nWe are calling {func.__name__}\t'
+                  f'positional arguments {args}\t'
+                  f'callable arguments {kwargs}')
+            print('Function has documentation:\n'
+                  , func.__doc__)
+            result = func(*args, **kwargs)
+            return result
+        except Exception as error:
+            error = f'At {datetime.now()} in function {func.__name__} was exception - {error}'
+            with open('function_errors.log', 'a', encoding='utf8') as file:
+                file.write(error)
+            print(error)
 
-    wrapper.count = 0
-    return wrapper
+    return wrapped_funk
 
 
-@counter
-def test():
-    print('Hello')
+@logging
+def zero_div():
+    """Zero division error"""
+    x = 1 / 0
 
 
-test()
-test()
-test()
+zero_div()
