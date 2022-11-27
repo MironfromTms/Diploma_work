@@ -1,14 +1,18 @@
-from contextlib import contextmanager
+import functools
 
 user_permissions = ['admin']
 
 
 def check_permission(name):
     def wrap_fun(func):
+        @functools.wraps(func)
         def wrapped_func(*args, **kwargs):
-            if name == 'admin':
-                func(*args, **kwargs)
-            else:
+            try:
+                if name in user_permissions:
+                    func(*args, **kwargs)
+                else:
+                    raise PermissionError
+            except PermissionError:
                 print('PermissionError: This user can not add comment')
 
         return wrapped_func
@@ -18,12 +22,12 @@ def check_permission(name):
 
 @check_permission('admin')
 def delete_site():
-    print('Удаляем сайт')
+    print('Delete the site')
 
 
 @check_permission('user_1')
 def add_comment():
-    print('Добавляем комментарий')
+    print('Add comment')
 
 
 delete_site()
